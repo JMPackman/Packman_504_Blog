@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="James Packman">
-<meta name="dcterms.date" content="2025-04-27">
+<meta name="dcterms.date" content="2025-05-01">
 
 <title>Confirmatory Factor Analysis – Packman_504_Blog</title>
 <style>
@@ -171,7 +171,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">April 27, 2025</p>
+        <p class="date">May 1, 2025</p>
       </div>
     </div>
     
@@ -239,7 +239,7 @@ alpha: 0.854
 
 Bootstrap 95% CI based on 1000 samples
  2.5% 97.5% 
-0.826 0.875 </code></pre>
+0.828 0.874 </code></pre>
 </div>
 </div>
 <p>We get a similar Cronbach’s alpha as we did last time; we’ve got pretty good internal consistency for the full set of variables. Here’s another summary table.</p>
@@ -468,7 +468,7 @@ Variances:
     competence        0.486    0.101    4.814    0.000</code></pre>
 </div>
 </div>
-<p>Okay, this output gives us a lot. But we can make our lives easier by computing the model fit indices we want:</p>
+<p>Okay, this output gives us a lot. Note the covariance between the factors! But we can make our lives easier by computing the model fit indices we want:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#We use "scaled" to provide a scaling correction factor (i.e., the Yuan-Bentler correction, Mplus variant)</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>fitTF.scaled<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"chisq.scaled"</span>, <span class="st">"cfi.scaled"</span>, <span class="st">"tli.scaled"</span>, <span class="st">"rmsea.scaled"</span>, <span class="st">"srmr"</span>, <span class="st">"aic"</span>, <span class="st">"bic"</span>)  </span>
@@ -671,7 +671,7 @@ Variances:
 </div>
 <section id="model-comparison" class="level2">
 <h2 class="anchored" data-anchor-id="model-comparison">Model Comparison</h2>
-<p>We can now compare the fit indices we calculated for our two-factor and one-factor models.</p>
+<p>We can now compare the fit indices we calculated for our two-factor and one-factor models. To make this easier, let’s put them in a table. We’ll also add in the “ideal” cutoff criteria from Hu &amp; Bentler (1999):</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -735,7 +735,133 @@ Variances:
 <p>&nbsp;</p>
 </div>
 </div>
-<p>Based on these criteria, the two-factor model seems to fit the data better. According to Hu &amp; Bentler (1999), our</p>
+<p>Based on these criteria, the two-factor model seems to fit the data better. The two-factor model also does a pretty good job of fulfilling the Hu &amp; Bentler (1999) criteria, especially for such our relatively small sample (N = 394).</p>
+<p>If you’re still not convinced, you can also run an ANOVA comparing the two models:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fitOF, fitTF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Scaled Chi-Squared Difference Test (method = "satorra.bentler.2001")
+
+lavaan-&gt;lavTestLRT():  
+   lavaan NOTE: The "Chisq" column contains standard test statistics, not the 
+   robust test that should be reported per model. A robust difference test is 
+   a function of two standard (not robust) statistics.
+      Df    AIC    BIC   Chisq Chisq diff Df diff Pr(&gt;Chisq)    
+fitTF 26 9596.7 9672.3  89.075                                  
+fitOF 27 9712.7 9784.3 207.086     72.864       1  &lt; 2.2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>According to the output, the fit indices for our two-factor model are significantly different (i.e., better) than for our one-factor model.</p>
+</section>
+<section id="interpreting-our-factors" class="level2">
+<h2 class="anchored" data-anchor-id="interpreting-our-factors">Interpreting our Factors</h2>
+<p>Now we return to the familiar process of unpacking and interpreting our factors. Let’s get the factor loadings for our two-factor model:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Factor Loadings for 2-Factor Model</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>SASS_CFA_Loadings <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">fa</span>(SASSCFA, <span class="at">nfactors =</span> <span class="dv">2</span>, <span class="at">rotate=</span><span class="st">"oblimin"</span>, <span class="at">fm=</span><span class="st">"ml"</span>) <span class="sc">%&gt;%</span> <span class="fu">model_parameters</span>(<span class="at">sort =</span> <span class="cn">TRUE</span>, <span class="at">threshold =</span> <span class="st">"max"</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>SASS_CFA_Loadings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Rotated loadings from Factor Analysis (oblimin-rotation)
+
+Variable                                                            |  ML1
+--------------------------------------------------------------------------
+All.things.considered..Jewish.people.are.untrustworthy.             | 0.87
+Jewish.people.are.often.very.rude.                                  | 0.85
+When.they.feel.slighted..Jewish.people.will.be.vengeful.            | 0.78
+Jewish.people.can.be.sneaky.                                        | 0.77
+Jewish.people.tend.to.complain.a.lot.                               | 0.76
+Jewish.people.tend.to.influence.the.media.                          | 0.47
+Jewish.people.tend.to.be.good.with.money.                           |     
+When.it.comes.to.education..Jewish.people.tend.to.be.overachievers. |     
+On.the.whole..Jewish.people.are.loyal.to.Israel.                    |     
+
+Variable                                                            |  ML2
+--------------------------------------------------------------------------
+All.things.considered..Jewish.people.are.untrustworthy.             |     
+Jewish.people.are.often.very.rude.                                  |     
+When.they.feel.slighted..Jewish.people.will.be.vengeful.            |     
+Jewish.people.can.be.sneaky.                                        |     
+Jewish.people.tend.to.complain.a.lot.                               |     
+Jewish.people.tend.to.influence.the.media.                          |     
+Jewish.people.tend.to.be.good.with.money.                           | 0.74
+When.it.comes.to.education..Jewish.people.tend.to.be.overachievers. | 0.55
+On.the.whole..Jewish.people.are.loyal.to.Israel.                    | 0.55
+
+Variable                                                           
+-------------------------------------------------------------------
+All.things.considered..Jewish.people.are.untrustworthy.            
+Jewish.people.are.often.very.rude.                                 
+When.they.feel.slighted..Jewish.people.will.be.vengeful.           
+Jewish.people.can.be.sneaky.                                       
+Jewish.people.tend.to.complain.a.lot.                              
+Jewish.people.tend.to.influence.the.media.                         
+Jewish.people.tend.to.be.good.with.money.                          
+When.it.comes.to.education..Jewish.people.tend.to.be.overachievers.
+On.the.whole..Jewish.people.are.loyal.to.Israel.                   
+
+Complexity | Uniqueness
+-----------------------
+      1.02 |       0.30
+      1.02 |       0.33
+      1.03 |       0.33
+      1.01 |       0.37
+      1.01 |       0.40
+      1.76 |       0.55
+      1.01 |       0.47
+      1.05 |       0.65
+      1.00 |       0.69
+
+The 2 latent factors (oblimin rotation) accounted for 54.51% of the total variance of the original data (ML1 = 39.42%, ML2 = 15.09%).</code></pre>
+</div>
+</div>
+<p>As you can see, our results are comparable to the loadings our EFA yielded. That gives us confidence that the factor structure of our data is consistent across samples! Once again, ML1 is our “warmth” dimension, while ML2 is our “competence” dimension.</p>
+<p>Let’s calculate the internal consistency of each factor.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>Warmth <span class="ot">&lt;-</span> SASSCFA <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="st">"Jewish.people.are.often.very.rude."</span>,</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"Jewish.people.tend.to.complain.a.lot."</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"All.things.considered..Jewish.people.are.untrustworthy."</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Jewish.people.can.be.sneaky."</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"When.they.feel.slighted..Jewish.people.will.be.vengeful."</span>,</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Jewish.people.tend.to.influence.the.media."</span>)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>Competence <span class="ot">&lt;-</span> SASSCFA <span class="sc">%&gt;%</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="st">"Jewish.people.tend.to.be.good.with.money."</span>,</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>         <span class="st">"When.it.comes.to.education..Jewish.people.tend.to.be.overachievers."</span>,</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>         <span class="st">"On.the.whole..Jewish.people.are.loyal.to.Israel."</span>)</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>WarmthAlpha <span class="ot">&lt;-</span> <span class="fu">cronbach.alpha</span>(Warmth, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">CI =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>CompAlpha <span class="ot">&lt;-</span> <span class="fu">cronbach.alpha</span>(Competence, <span class="at">standardized =</span> <span class="cn">TRUE</span>, <span class="at">CI =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>WarmthAlpha</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Standardized Cronbach's alpha for the 'Warmth' data-set
+
+Items: 6
+Sample units: 394
+alpha: 0.897
+
+Bootstrap 95% CI based on 1000 samples
+ 2.5% 97.5% 
+0.879 0.914 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>CompAlpha</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Standardized Cronbach's alpha for the 'Competence' data-set
+
+Items: 3
+Sample units: 394
+alpha: 0.649
+
+Bootstrap 95% CI based on 1000 samples
+ 2.5% 97.5% 
+0.569 0.712 </code></pre>
+</div>
+</div>
+<p>Once again, we have really good internal consistency with our first factor, but a little shaky with our second factor. So, it might be that the first factor is pretty solid, and the other items represent loosely-grouped “other stuff” outside of that factor.</p>
 
 
 </section>
