@@ -1,0 +1,35 @@
+---
+title: "Welcome to Factor Analysis"
+image:  FA copy.jpg
+author: "James Packman"
+date: "2025-04-04"
+categories: [news]
+---
+
+Welcome to this tutorial blog on exploratory factor analysis (EFA) and confirmatory factor analysis (CFA).
+
+# What is Factor Analysis?
+
+Factor analysis is a method of dimensionality reduction. Imagine you have an unwieldy amount of data. You could try to map out correlations between every single variable, but that might be time-consuming or could introduce researcher bias (e.g., which correlations do you choose to test/report and which do you leave out? Sounds suspicious).
+
+Instead, you could group related variables together into buckets. That way, rather than carrying around all your variables, you can carry around a more manageable number of buckets. To do this, however, you need to decide how many buckets you need, how many variables should go in each bucket, and which variables fit best in which bucket.
+
+What do you do with buckets once you have them? Buckets, which we'll henceforth call factors (the bucket metaphor has, if you'll pardon the pun, 'kicked the bucket') are your relevant dimensions. That is, instead of examining how participants, for example, vary along all of your measures (i.e., your variables), you assess how they vary along higher level dimensions. These dimensions tend to be more theoretically complex than the underlying variables.
+
+## **A Zoo of Factors: An Example**
+
+Imagine you've asked a bunch of people how much they like cats, dogs, hamsters, flies, spiders, beetles, lions, tigers, and bears (oh my!). People's opinions about cats, dogs, and hamsters probably cluster together, as do their views of lions, tigers, and bears. Based on people's responses, you could conceivably group together their views on "Pets" (cats, dogs, hamsters), "Bugs" (flies, spiders, beetles), and "Predators" (lions, tigers, bears). People's opinions about "Pets," "Bugs," and "Predators" are your factors, while their responses about each type of animal are your variables. But it's much easier to look at patterns between factors than variables. For instance, maybe the more people like predators, the more they like bugs. I don't know why that would be the case, but suffice it to say that grouping variables into factors allows you to ask higher-level questions.
+
+## **Building Theory out of Higher-Level Constructs**
+
+Factors not only make your data less cumbersome, but also can help you answer questions about theoretical constructs. If you're interested in an esoteric concept, like "well-being," that can be difficult to measure directly in an accurate, meaningful way. You probably wouldn't just want to ask "how would you rate your well-being on a scale of 1-10?" You could do that, but you could be a lot more confident in your results if you instead measured a bunch of different things that comprise well-being.
+
+You might have different theories about what goes into well-being. Perhaps physical health and social connection are two "buckets" of interest (the metaphor returns!). You could measure variables related to physical health (e.g., diet, exercise) and social connection (e.g., number of close friends, frequency of interpersonal contact). If each of those variables reliably "go together" under their respective factors, you have evidence that those variables collectively provide you a good sense of that factor. "Going together" indicates internal consistency (e.g., Cronbach's alpha) as well as accounting for variance in your data. But we'll get into this more later.
+
+In our example, if the physical health variables go together, your exercise and diet variables probably give you a good picture of this higher-level concept of "physical health." Furthermore, if the factors—physical health and social connection, collectively explain a lot of the variance in your data, that might suggest you have a richer understanding of what goes into "well-being" than you would get if you just asked people to report their well-being on a single-item scale.
+
+This thought process is what undergirds factor analysis. It's also one of the rationales of scale construction: if you want a coherent scale that measures a clear construct, you need factor analysis.
+
+Reducing dimensionality, clarifying theoretical constructs, and formulating measurement scales are just some of the things you can do with factor analysis. In the next posts, we'll talk about exploratory factor analysis (EFA) and confirmatory factor analysis (CFA) with example code.
+
+*Image Credit*: <https://www.growthmentor.com/glossary/factor-analysis/>

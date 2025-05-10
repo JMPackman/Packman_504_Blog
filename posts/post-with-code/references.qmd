@@ -1,0 +1,30 @@
+---
+title: "Further Reading"
+author: "James Packman"
+date: "2025-05-07"
+categories: [news]
+image: "image.jpg"
+---
+
+# References
+
+Bartlett, M. S. (1938). Methods of estimating mental factors. *Nature*, **141**, 609–610. [doi:10.1038/141246a0](https://doi.org/10.1038/141246a0).
+
+Bartlett, M. S. (1937). The statistical conception of mental factors. *British Journal of Psychology*, **28**, 97–104. [doi:10.1111/j.2044-8295.1937.tb00863.x](https://doi.org/10.1111/j.2044-8295.1937.tb00863.x).
+
+Bollen, K. A. (1989). Structural equations with latent variables. New York: John Wiley & Sons.
+
+Bryant, F. B., & Yarnold, P. R. (1995). Principal components analysis and exploratory and confirmatory factor analysis. In L. G. Grimm & P. R. Yarnold (Eds.), *Reading and understanding multivariate analysis*. Washington, DC: American Psychological Association.
+
+Field, A., Field, Z., & Miles, J. (2012). Discovering statistics using R.
+
+Fiske, S. T. (2018). Stereotype Content: Warmth and Competence Endure. Current Directions in Psychological Science, 27(2), 67-73. https://doi.org/10.1177/0963721417738825 (Original work published 2018)
+
+Fiske, S. T., Cuddy, A. J., & Glick, P. (2007). Universal dimensions of social cognition: warmth and competence. *Trends in cognitive sciences*, *11*(2), 77–83. <https://doi.org/10.1016/j.tics.2006.11.005>
+
+Hu, L., & Bentler, P. M. (1999). Cutoff criteria for fit indexes in covariance structure analysis: Conventional criteria versus new alternatives. *Structural Equation Modeling: A Multidisciplinary Journal*, *6*(1), 1–55. <https://doi.org/10.1080/10705519909540118>
+
+See also:
+
+<https://www.datacamp.com/doc/r/factor>
+<https://rpubs.com/pjmurphy/758265>

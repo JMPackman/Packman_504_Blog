@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="James Packman">
+<meta name="dcterms.date" content="2025-04-27">
+
+<title>Confirmatory Factor Analysis – Packman_504_Blog</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Packman_504_Blog</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Confirmatory Factor Analysis</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">news</div>
+                <div class="quarto-category">code</div>
+                <div class="quarto-category">analysis</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>James Packman </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">April 27, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<p>Now that you have a solid foundation for factor analysis, and have completed EFA, let’s turn our attention to confirmatory factor analysis (CFA). You’re workflow should consist of EFA, then CFA. CFA is the factor analysis you conduct when you have a hypothesis about what the underlying factor structure among variables in your data should look like.</p>
+<p>Note that you shouldn’t conduct EFA and CFA on the same data set. That would be like betting on a baseball game you’ve already seen. Instead, you should watch some baseball games (your EFA), then, when you have a sense of the pattern, bet on the next one (note: this post does not constitute an endorsement of gambling).</p>
+<p>Consequently, we got a whole new data set for a whole new ball game. Note that scale responses range from 0-5, rather than 1-6 in this study (both are still 6-point Likert scales).</p>
+<section id="exploratory-data-analysis" class="level1">
+<h1>Exploratory Data Analysis</h1>
+<p>Let’s load our required packages and then our data set, which has the same variables from last time.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"papaja"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GPArotation)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nFactors)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Rmisc)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(coefficientalpha)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mvnormtest)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(QuantPsyc)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ltm)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(easystats)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(performance)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(parameters)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(InteractionPoweR)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magick)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plyr)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Load in data set</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>SASSCFAdata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"SASSCFA.csv"</span>)  </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Subset columns to only include Scale of Antisemitic Stereotypes (SASS)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>SASSCFA <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(SASSCFAdata[,<span class="dv">44</span><span class="sc">:</span><span class="dv">52</span>])</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Summary Statistics - Full Scale</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cronbach.alpha</span>(SASSCFA, <span class="at">CI =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Cronbach's alpha for the 'SASSCFA' data-set
+
+Items: 9
+Sample units: 394
+alpha: 0.854
+
+Bootstrap 95% CI based on 1000 samples
+ 2.5% 97.5% 
+0.826 0.875 </code></pre>
+</div>
+</div>
+<p>We get a similar Cronbach’s alpha as we did last time; we’ve got pretty good internal consistency for the full set of variables. Here’s another summary table.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>(#tab:unnamed-chunk-3) Scale of Antisemitic Stereotypes Descriptive Statistics - CFA Study</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Questions</th>
+<th style="text-align: left;">Mean</th>
+<th style="text-align: left;">Median</th>
+<th style="text-align: left;">SD</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Jewish people are often very rude</td>
+<td style="text-align: left;">1.20</td>
+<td style="text-align: left;">1.00</td>
+<td style="text-align: left;">1.10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Jewish people tend to complain a lot</td>
+<td style="text-align: left;">1.46</td>
+<td style="text-align: left;">1.00</td>
+<td style="text-align: left;">1.14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">All things considered, Jewish people are untrustworthy</td>
+<td style="text-align: left;">0.94</td>
+<td style="text-align: left;">1.00</td>
+<td style="text-align: left;">1.03</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Jewish people can be sneaky</td>
+<td style="text-align: left;">1.60</td>
+<td style="text-align: left;">1.00</td>
+<td style="text-align: left;">1.31</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">When they feel slighted, Jewish people will be vengeful</td>
+<td style="text-align: left;">1.60</td>
+<td style="text-align: left;">1.00</td>
+<td style="text-align: left;">1.22</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Jewish people tend to influence the media</td>
+<td style="text-align: left;">2.19</td>
+<td style="text-align: left;">2.00</td>
+<td style="text-align: left;">1.38</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Jewish people tend to be good with money</td>
+<td style="text-align: left;">3.39</td>
+<td style="text-align: left;">3.00</td>
+<td style="text-align: left;">0.97</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">When it comes to education, Jewish people tend to be overachievers</td>
+<td style="text-align: left;">2.87</td>
+<td style="text-align: left;">3.00</td>
+<td style="text-align: left;">1.10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">On the whole, Jewish people are loyal to Israel</td>
+<td style="text-align: left;">3.04</td>
+<td style="text-align: left;">3.00</td>
+<td style="text-align: left;">1.19</td>
+</tr>
+</tbody>
+</table>
+<div data-custom-style="table-note">
+<p><em>Note.</em> Item scores are scored 0-5 (‘strongly disagree’ - strongly agree’)</p>
+</div>
+<p>&nbsp;</p>
+</div>
+</div>
+</section>
+<section id="pre-cfa-test" class="level1">
+<h1>Pre-CFA Test</h1>
+<p>Next, we have to make sure our data are suitable for CFA.</p>
+<section id="multivariate-normality-test" class="level2">
+<h2 class="anchored" data-anchor-id="multivariate-normality-test">Multivariate Normality Test</h2>
+<p>Factor analysis assumes multivariate normality; that is, that the data are roughly normally distributed in multivariate space. We can also use the performance::check we did in EFA to conduct the KMO and Sphericity tests.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Mardia's Multivariate Normality Test</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mult.norm</span>(SASSCFA)<span class="sc">$</span>mult.test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         Beta-hat    kappa p-val
+Skewness  10.9399 718.3868     0
+Kurtosis 120.9176  15.4589     0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>performance<span class="sc">::</span><span class="fu">check_factorstructure</span>(SASSCFA)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Is the data suitable for Factor Analysis?
+
+
+  - Sphericity: Bartlett's test of sphericity suggests that there is sufficient significant correlation in the data for factor analysis (Chisq(36) = 1578.54, p &lt; .001).
+  - KMO: The Kaiser, Meyer, Olkin (KMO) overall measure of sampling adequacy suggests that data seems appropriate for factor analysis (KMO = 0.89). The individual KMO scores are: Jewish.people.tend.to.complain.a.lot. (0.92), Jewish.people.are.often.very.rude. (0.89), All.things.considered..Jewish.people.are.untrustworthy. (0.89), Jewish.people.can.be.sneaky. (0.91), When.they.feel.slighted..Jewish.people.will.be.vengeful. (0.91), Jewish.people.tend.to.influence.the.media. (0.93), Jewish.people.tend.to.be.good.with.money. (0.75), When.it.comes.to.education..Jewish.people.tend.to.be.overachievers. (0.84), On.the.whole..Jewish.people.are.loyal.to.Israel. (0.77).</code></pre>
+</div>
+</div>
+<p>Unfortunately, because the test returned significant results, that means our data are not only skewed, but also leptokurtic. There is some evidence to suggest that this is rather common in socially sensitive research areas like stereotyping and prejudice. We’ll do our best to account for these characteristics of the data going forward.</p>
+<p>But the good news is, the other tests indicated that our data has adequate sampling and correlation for factor analysis. Onward!</p>
+</section>
+</section>
+<section id="model-specification-and-fit" class="level1">
+<h1>Model Specification and Fit</h1>
+<p>We next specify which variables we think go into which factors. This is where our previous EFA is helpful; we can organize the variables into the factors onto which they loaded in EFA. We name the factors “warmth” and “competence” based on our prior understanding of the theory.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Two-factor (TF) model specification</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>TF.model <span class="ot">&lt;-</span> <span class="st">' warmth =~ Jewish.people.are.often.very.rude. +</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="st">                  Jewish.people.tend.to.complain.a.lot. +</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="st">                  All.things.considered..Jewish.people.are.untrustworthy. +</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="st">                    Jewish.people.can.be.sneaky. +</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="st">                    When.they.feel.slighted..Jewish.people.will.be.vengeful. +</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="st">                    Jewish.people.tend.to.influence.the.media. </span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="st">              competence =~  Jewish.people.tend.to.be.good.with.money. +</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="st">         When.it.comes.to.education..Jewish.people.tend.to.be.overachievers. +</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="st">         On.the.whole..Jewish.people.are.loyal.to.Israel.'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next, we’ll calculate how well this two-factor model fits our data. Because the data is skewed and leptokurtic, we’ll use a maximum likelihood estimation with robust (Huber-White) standard errors.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fitTF <span class="ot">&lt;-</span><span class="fu">cfa</span>(TF.model, <span class="at">data =</span> SASSCFA, <span class="at">estimator=</span><span class="st">"MLR"</span>) <span class="co">#Maximum likelihood estimator</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fitTF, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>lavaan 0.6-19 ended normally after 31 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        19
+
+  Number of observations                           394
+
+Model Test User Model:
+                                              Standard      Scaled
+  Test Statistic                                89.075      76.569
+  Degrees of freedom                                26          26
+  P-value (Chi-square)                           0.000       0.000
+  Scaling correction factor                                  1.163
+    Yuan-Bentler correction (Mplus variant)                       
+
+Model Test Baseline Model:
+
+  Test statistic                              1598.143    1240.402
+  Degrees of freedom                                36          36
+  P-value                                        0.000       0.000
+  Scaling correction factor                                  1.288
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.960       0.958
+  Tucker-Lewis Index (TLI)                       0.944       0.942
+                                                                  
+  Robust Comparative Fit Index (CFI)                         0.962
+  Robust Tucker-Lewis Index (TLI)                            0.948
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)              -4779.357   -4779.357
+  Scaling correction factor                                  1.369
+      for the MLR correction                                      
+  Loglikelihood unrestricted model (H1)      -4734.819   -4734.819
+  Scaling correction factor                                  1.250
+      for the MLR correction                                      
+                                                                  
+  Akaike (AIC)                                9596.714    9596.714
+  Bayesian (BIC)                              9672.265    9672.265
+  Sample-size adjusted Bayesian (SABIC)       9611.978    9611.978
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.078       0.070
+  90 Percent confidence interval - lower         0.061       0.054
+  90 Percent confidence interval - upper         0.097       0.087
+  P-value H_0: RMSEA &lt;= 0.050                    0.005       0.024
+  P-value H_0: RMSEA &gt;= 0.080                    0.465       0.183
+                                                                  
+  Robust RMSEA                                               0.076
+  90 Percent confidence interval - lower                     0.056
+  90 Percent confidence interval - upper                     0.096
+  P-value H_0: Robust RMSEA &lt;= 0.050                         0.016
+  P-value H_0: Robust RMSEA &gt;= 0.080                         0.383
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.056       0.056
+
+Parameter Estimates:
+
+  Standard errors                             Sandwich
+  Information bread                           Observed
+  Observed information based on                Hessian
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+  warmth =~                                           
+    Jwsh.ppl.r....    1.000                           
+    Jwsh.ppl......    1.002    0.065   15.422    0.000
+    All.th...J....    0.955    0.063   15.243    0.000
+    Jwsh.ppl.cn...    1.176    0.081   14.569    0.000
+    Whn.....J.....    1.137    0.080   14.202    0.000
+    Jwsh.ppl......    0.947    0.085   11.109    0.000
+  competence =~                                       
+    Jwsh.pp.......    1.000                           
+    W......J......    0.919    0.131    7.012    0.000
+    On....J.....I.    0.966    0.123    7.855    0.000
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+  warmth ~~                                           
+    competence        0.260    0.048    5.391    0.000
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+   .Jwsh.ppl.r....    0.423    0.051    8.303    0.000
+   .Jwsh.ppl......    0.510    0.060    8.484    0.000
+   .All.th...J....    0.347    0.038    9.035    0.000
+   .Jwsh.ppl.cn...    0.632    0.092    6.906    0.000
+   .Whn.....J.....    0.479    0.056    8.607    0.000
+   .Jwsh.ppl......    1.199    0.095   12.630    0.000
+   .Jwsh.pp.......    0.461    0.081    5.718    0.000
+   .W......J......    0.794    0.090    8.857    0.000
+   .On....J.....I.    0.948    0.092   10.316    0.000
+    warmth            0.781    0.100    7.837    0.000
+    competence        0.486    0.101    4.814    0.000</code></pre>
+</div>
+</div>
+<p>Okay, this output gives us a lot. But we can make our lives easier by computing the model fit indices we want:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#We use "scaled" to provide a scaling correction factor (i.e., the Yuan-Bentler correction, Mplus variant)</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>fitTF.scaled<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"chisq.scaled"</span>, <span class="st">"cfi.scaled"</span>, <span class="st">"tli.scaled"</span>, <span class="st">"rmsea.scaled"</span>, <span class="st">"srmr"</span>, <span class="st">"aic"</span>, <span class="st">"bic"</span>)  </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>Two_Factor_Fit <span class="ot">&lt;-</span> <span class="fu">fitmeasures</span>(fitTF, fitTF.scaled)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>Two_Factor_Fit <span class="sc">%&gt;%</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">chisq.scaled</td>
+<td style="text-align: right;">7.656897e+01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cfi.scaled</td>
+<td style="text-align: right;">9.580132e-01</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tli.scaled</td>
+<td style="text-align: right;">9.418645e-01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rmsea.scaled</td>
+<td style="text-align: right;">7.025986e-02</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">srmr</td>
+<td style="text-align: right;">5.618755e-02</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">aic</td>
+<td style="text-align: right;">9.596714e+03</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bic</td>
+<td style="text-align: right;">9.672265e+03</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>This is much easier to interpret. But what are we comparing this two-factor model against? We also need to specify our one-factor “baseline” model. This is the model where all the variables are under the same factor (i.e., there are no underlying factors; everything goes together.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#One-factor (OF) model specification and fit</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>OF.model <span class="ot">&lt;-</span> <span class="st">' all =~ Jewish.people.are.often.very.rude. +</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="st">                  Jewish.people.tend.to.complain.a.lot. +</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="st">                  All.things.considered..Jewish.people.are.untrustworthy. +</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="st">                    Jewish.people.can.be.sneaky. +</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="st">                    When.they.feel.slighted..Jewish.people.will.be.vengeful. +</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="st">                    Jewish.people.tend.to.influence.the.media. + Jewish.people.tend.to.be.good.with.money. +</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="st">         When.it.comes.to.education..Jewish.people.tend.to.be.overachievers. +</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="st">         On.the.whole..Jewish.people.are.loyal.to.Israel. '</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>fitOF <span class="ot">&lt;-</span><span class="fu">cfa</span>(OF.model, <span class="at">data =</span> SASSCFA, <span class="at">estimator=</span><span class="st">"MLR"</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fitOF, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>lavaan 0.6-19 ended normally after 23 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        18
+
+  Number of observations                           394
+
+Model Test User Model:
+                                              Standard      Scaled
+  Test Statistic                               207.086     175.462
+  Degrees of freedom                                27          27
+  P-value (Chi-square)                           0.000       0.000
+  Scaling correction factor                                  1.180
+    Yuan-Bentler correction (Mplus variant)                       
+
+Model Test Baseline Model:
+
+  Test statistic                              1598.143    1240.402
+  Degrees of freedom                                36          36
+  P-value                                        0.000       0.000
+  Scaling correction factor                                  1.288
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.885       0.877
+  Tucker-Lewis Index (TLI)                       0.846       0.836
+                                                                  
+  Robust Comparative Fit Index (CFI)                         0.887
+  Robust Tucker-Lewis Index (TLI)                            0.849
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)              -4838.362   -4838.362
+  Scaling correction factor                                  1.356
+      for the MLR correction                                      
+  Loglikelihood unrestricted model (H1)      -4734.819   -4734.819
+  Scaling correction factor                                  1.250
+      for the MLR correction                                      
+                                                                  
+  Akaike (AIC)                                9712.724    9712.724
+  Bayesian (BIC)                              9784.299    9784.299
+  Sample-size adjusted Bayesian (SABIC)       9727.185    9727.185
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.130       0.118
+  90 Percent confidence interval - lower         0.114       0.103
+  90 Percent confidence interval - upper         0.147       0.134
+  P-value H_0: RMSEA &lt;= 0.050                    0.000       0.000
+  P-value H_0: RMSEA &gt;= 0.080                    1.000       1.000
+                                                                  
+  Robust RMSEA                                               0.128
+  90 Percent confidence interval - lower                     0.111
+  90 Percent confidence interval - upper                     0.147
+  P-value H_0: Robust RMSEA &lt;= 0.050                         0.000
+  P-value H_0: Robust RMSEA &gt;= 0.080                         1.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.092       0.092
+
+Parameter Estimates:
+
+  Standard errors                             Sandwich
+  Information bread                           Observed
+  Observed information based on                Hessian
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+  all =~                                              
+    Jwsh.ppl.r....    1.000                           
+    Jwsh.ppl......    1.010    0.066   15.363    0.000
+    All.th...J....    0.955    0.063   15.224    0.000
+    Jwsh.ppl.cn...    1.186    0.081   14.635    0.000
+    Whn.....J.....    1.149    0.081   14.122    0.000
+    Jwsh.ppl......    0.968    0.088   11.054    0.000
+    Jwsh.pp.......    0.317    0.073    4.370    0.000
+    W......J......    0.419    0.083    5.072    0.000
+    On....J.....I.    0.349    0.088    3.957    0.000
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)
+   .Jwsh.ppl.r....    0.435    0.051    8.453    0.000
+   .Jwsh.ppl......    0.510    0.060    8.529    0.000
+   .All.th...J....    0.357    0.039    9.110    0.000
+   .Jwsh.ppl.cn...    0.631    0.091    6.973    0.000
+   .Whn.....J.....    0.473    0.055    8.605    0.000
+   .Jwsh.ppl......    1.180    0.094   12.549    0.000
+   .Jwsh.pp.......    0.870    0.079   10.954    0.000
+   .W......J......    1.069    0.076   13.992    0.000
+   .On....J.....I.    1.308    0.093   14.053    0.000
+    all               0.769    0.100    7.723    0.000</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fitOF.scaled<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"chisq.scaled"</span>, <span class="st">"cfi.scaled"</span>, <span class="st">"tli.scaled"</span>, <span class="st">"rmsea.scaled"</span>, <span class="st">"srmr"</span>, <span class="st">"aic"</span>, <span class="st">"bic"</span>)  </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>One_Factor_Fit <span class="ot">&lt;-</span> <span class="fu">fitmeasures</span>(fitOF, fitOF.scaled) </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>One_Factor_Fit <span class="sc">%&gt;%</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">chisq.scaled</td>
+<td style="text-align: right;">1.754618e+02</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cfi.scaled</td>
+<td style="text-align: right;">8.767340e-01</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tli.scaled</td>
+<td style="text-align: right;">8.356454e-01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rmsea.scaled</td>
+<td style="text-align: right;">1.181347e-01</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">srmr</td>
+<td style="text-align: right;">9.241804e-02</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">aic</td>
+<td style="text-align: right;">9.712724e+03</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bic</td>
+<td style="text-align: right;">9.784299e+03</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<section id="model-comparison" class="level2">
+<h2 class="anchored" data-anchor-id="model-comparison">Model Comparison</h2>
+<p>We can now compare the fit indices we calculated for our two-factor and one-factor models.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>(#tab:unnamed-chunk-9) Scale of Antisemitic Stereotypes Factor Fit Indices</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Fit_Index</th>
+<th style="text-align: left;">One Factor Model</th>
+<th style="text-align: left;">Two Factor Model</th>
+<th style="text-align: left;">Hu &amp; Bentler (1999) Cutoff Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Chi-Sq. Scaled</td>
+<td style="text-align: left;">175.46</td>
+<td style="text-align: left;">76.57</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CFI Scaled</td>
+<td style="text-align: left;">0.88</td>
+<td style="text-align: left;">0.96</td>
+<td style="text-align: left;">0.95</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">TLI Scaled</td>
+<td style="text-align: left;">0.84</td>
+<td style="text-align: left;">0.94</td>
+<td style="text-align: left;">0.95</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">RMSEA Scaled</td>
+<td style="text-align: left;">0.12</td>
+<td style="text-align: left;">0.07</td>
+<td style="text-align: left;">0.06</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SRMR</td>
+<td style="text-align: left;">0.09</td>
+<td style="text-align: left;">0.06</td>
+<td style="text-align: left;">0.08</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">AIC</td>
+<td style="text-align: left;">9,712.72</td>
+<td style="text-align: left;">9,596.71</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BIC</td>
+<td style="text-align: left;">9,784.30</td>
+<td style="text-align: left;">9,672.26</td>
+<td style="text-align: left;">-</td>
+</tr>
+</tbody>
+</table>
+<div data-custom-style="table-note">
+<p><em>Note.</em> Maximum Likelihood estimator with robust standard errors</p>
+</div>
+<p>&nbsp;</p>
+</div>
+</div>
+<p>Based on these criteria, the two-factor model seems to fit the data better. According to Hu &amp; Bentler (1999), our</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
